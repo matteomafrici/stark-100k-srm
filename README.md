@@ -20,7 +20,7 @@ back to it.
 
 - [Matteo Mafrici](https://github.com/matteomafrici)
 - [Mario Guida](https://github.com/marioguida27)
-- Juan Álvaro Cobos Franco
+- [Juan Álvaro Cobos Franco](https://github.com/jcobgod)
 - Martina Lucia Magarelli
 - Camilla Martino
 - Margherita Palitta
