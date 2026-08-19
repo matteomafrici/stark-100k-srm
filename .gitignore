@@ -1,0 +1,10 @@
+# MATLAB
+*.asv
+*.m~*
+Simulink_cache/
+slprj/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
