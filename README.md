@@ -1,11 +1,15 @@
 # Stark-100k SRM
 
-Pre-design of the **Stark-100k**, a ~100 kN-class solid rocket motor
-(AP/HTPB, BATES grain, conical nozzle), built for the Space Propulsion course
-(Politecnico di Milano, A.Y. 2025-26, Final Report Task No. 3000, team
-**THRUST ISSUES**). This repository documents the ballistic design and
-transient performance of the motor, its thermal protections and the nozzle
-throat cooling jacket with the preliminary tank sizing.
+Pre-design of the **Stark-100k**, a solid-propellant motor delivering 100 kN
+of thrust at sea level over a total impulse of 2.5 MN·s, with a near-constant
+thrust profile from BATES-style radial and axial burning. The primary
+engineering objective is the **quantification of the heat load at the nozzle
+throat**: the throat carries no insert and is instrumented with a straight,
+co-flowing water cooling jacket spanning area ratio 2 (subsonic) to 2
+(supersonic), whose water temperature rise yields the transferred heat. This
+repository documents the ballistic design and performance of the motor, its
+thermal protections, and the cooling jacket together with the supporting tank
+sizing.
 
 The single authoritative source is
 [`stark-100k-report.pdf`](report/stark-100k-report.pdf): every module folder
@@ -22,13 +26,24 @@ back to it.
 - Margherita Palitta
 - Jules Jean Laurence Simon
 
-## Mission overview
+## Objective
 
-The Stark-100k is the first stage of a Stark Industries launch system, sized
-to deliver a nominal sea-level thrust of ~100 kN with a total impulse of
-2.5 MN·s. It is a solid rocket motor with a single-segment BATES grain and a
-conical nozzle, designed to keep the chamber pressure flat (kn values in the
-stable plateau of the burn-rate law) over the whole burn.
+The Stark-100k is a solid-propellant unit providing 100 kN of thrust at sea
+level over a total impulse of 2.5 MN·s. The motor burns a standard
+non-aluminized AP/HTPB propellant at about 70 bar with a quasi-constant
+thrust profile: the BATES grain burns radially and axially so that the
+initial and final chamber pressures coincide. The nozzle is optimal at sea
+level.
+
+The engineering focus is the throat heat load. To monitor the steady-state
+heat transfer, the throat does not use a conventional insert: a straight
+co-flow water jacket (pressurized, tap-water inlet at 18 °C) covers the
+region between area ratio 2 (subsonic) and 2 (supersonic), and the
+transferred heat is derived from the water temperature rise. A thermal
+barrier coating is considered, but its use must be justified with numbers —
+which is exactly what the thermal-protection module provides. The jacket is
+reusable; the rest of the motor is expendable, so the engine is not
+performance-optimized beyond its primary instrumentation role.
 
 ### Design targets
 

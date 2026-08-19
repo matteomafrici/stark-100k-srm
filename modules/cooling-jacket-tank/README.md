@@ -58,7 +58,7 @@ and is not recomputed by this module.
 MATLAB R2026a. Single script:
 
 ```matlab
-run('cooling_jacket_final.m');
+run('throat_cooling_jacket.m');
 ```
 
 It prints the gas properties, geometry, adiabatic wall temperature, coolant
@@ -79,5 +79,5 @@ of v_real vs tube count).
 
 ```
 cooling-jacket-tank/
-└── cooling_jacket_final.m   # throat jacket thermal/hydraulic design + figures
+└── throat_cooling_jacket.m   # throat jacket thermal/hydraulic design + figures
 ```
