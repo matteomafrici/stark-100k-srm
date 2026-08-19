@@ -72,8 +72,10 @@ run('bilayer_tbc_carbon_carbon.m');          % bilayer TBC (RSZ + YSZ) on C/C
   water-jacket verification with the air-only network (copy-paste error in the
   `fsolve` call). It is fixed in this repository so the active-case thickness
   (0.293 / 0.197 mm) is used consistently in the verification block.
-- The scripts print the required thickness and temperature tables shown above;
-  they do not export figures.
+- The scripts print the required thickness and temperature tables shown above
+  and export their figures to `results/`
+  (e.g. `chamber_wall_profile.png`, `convergent_transient.png`,
+  `bilayer_cc_thickness_vs_conductivity.png`).
 
 ## Folder contents
 
@@ -84,5 +86,6 @@ thermal-protection/
 ├── convergent_passive_vs_active_cooling.m  # passive vs active (water jacket) cooling
 ├── carbon_carbon_single_layer_tbc.m     # C/C conductivity sweep, single TBC layer
 ├── bilayer_tbc_inconel.m                # bilayer TBC (RSZ + YSZ) on Inconel 718
-└── bilayer_tbc_carbon_carbon.m          # bilayer TBC (RSZ + YSZ) on C/C, resistance model
+├── bilayer_tbc_carbon_carbon.m          # bilayer TBC (RSZ + YSZ) on C/C, resistance model
+└── results/                             # generated figures
 ```

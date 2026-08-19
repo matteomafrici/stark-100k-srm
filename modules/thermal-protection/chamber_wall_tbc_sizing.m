@@ -146,7 +146,7 @@ x_rsz   = linspace(0, s_rsz*1000, nx_rsz);
 x_alloy = linspace(s_rsz*1000, (s_rsz+t_alloy)*1000, nx_alloy);
 x_tot   = [x_rsz, x_alloy];
 
-figure('Color','white','Position',[100 100 900 400]);
+fig1 = figure('Color','white','Position',[100 100 900 400]);
 hold on;
 patch([x_rsz, fliplr(x_rsz)], [293.15*ones(1,nx_rsz), fliplr(T(1:nx_rsz))], ...
     [0.85 0.92 0.98], 'EdgeColor','none','FaceAlpha',0.4);
@@ -169,7 +169,7 @@ set(gca,'FontSize',10,'GridAlpha',0.25,'LineWidth',0.8);
 xlim([0, (s_rsz+t_alloy)*1000]);
 
 %% PLOT 2 - Temperature transient profile
-figure('Color','white','Position',[100 100 900 420]);
+fig2 = figure('Color','white','Position',[100 100 900 420]);
 hold on;
 plot(time, T_surf_time,  'Color',[0.85 0.35 0.18], 'LineWidth', 2);
 plot(time, T_int_time,   'Color',[0.12 0.37 0.65], 'LineWidth', 2);
@@ -221,7 +221,7 @@ while abs(diff2) > 1e-3
     if (s_hi2 - s_lo2) < 1e-8, break; end
 end
 
-figure('Color','white','Position',[100 100 700 380]);
+fig3 = figure('Color','white','Position',[100 100 700 380]);
 hold on;
 plot(1:length(s_history), s_history*1000, 'o-', ...
     'Color',[0.12 0.37 0.65], 'LineWidth', 1.8, ...
@@ -270,4 +270,18 @@ for tp = t_punti(2:end)
     T_precedente = T_attuale;
 end
 fprintf('==========================================================\n');
+
+%% Save figures
+results_dir = fullfile(fileparts(mfilename('fullpath')), 'results');
+if ~exist(results_dir, 'dir')
+    mkdir(results_dir);
+end
+figs = [fig1, fig2, fig3];
+names = {'chamber_wall_profile', 'chamber_wall_transient', 'chamber_wall_bisection'};
+for k = 1:numel(figs)
+    set(figs(k), 'Color', 'w');
+    exportgraphics(figs(k), fullfile(results_dir, [names{k} '.png']), ...
+        'Resolution', 200, 'BackgroundColor', 'white');
+end
+fprintf('Figures saved to: %s\n', results_dir);
 

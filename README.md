@@ -65,6 +65,8 @@ Ignition is deep in the non-erosive regime: core Mach number 0.0348 and mass
 flux 174.7 kg/(m²·s) against a non-erosive threshold of 703 kg/(m²·s) at
 65 bar.
 
+![BATES motor sketch](modules/ballistic-design/results/2d_motor_sketch.png)
+
 The chamber wall carries a RSZ thermal barrier coating (0.7242 mm) to keep the
 metal/ceramic interface at 1300 K; the nozzle throat is cooled by a water
 jacket sized on the plane, cylindrical and Bartz heat-transfer models (TBC
@@ -102,6 +104,8 @@ Monte Carlo uncertainty over the ballistic parameters (2000 samples, fixed
 seed) gives MEOP 61.80 ± 3.40 bar and total impulse 2.38 ± 0.03 MN·s; the
 report values (62.06 ± 6.29 bar) come from the same model without a fixed
 seed.
+
+![Real motor performance](modules/ballistic-design/results/real_motor_performance.png)
 
 ## What you can clone and use
 

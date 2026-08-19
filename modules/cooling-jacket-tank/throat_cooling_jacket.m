@@ -157,8 +157,16 @@ fprintf('c*           = %.1f m/s\n', c_star);
 fprintf('R_c (throat) = %.4f m\n', R_c);
 fprintf('sigma        = %.2f\n', sigma);
 
+% --- Figure styling: light background, dark text (matching design.m) ---
+set(0, 'DefaultFigureColor',    [0.97 0.97 0.97], ...  % figure background: near-white
+       'DefaultAxesColor',      [1.00 1.00 1.00], ...  % axes background: white
+       'DefaultAxesXColor',     [0.15 0.15 0.15], ...  % X tick/label: dark grey
+       'DefaultAxesYColor',     [0.15 0.15 0.15], ...  % Y tick/label: dark grey
+       'DefaultAxesZColor',     [0.15 0.15 0.15], ...  % Z tick/label
+       'DefaultAxesGridColor',  [0.15 0.15 0.15], ...  % grid lines
+       'DefaultTextColor',      [0.15 0.15 0.15]);     % all text objects
 
-figure;
+fig1 = figure('Color','white');
 plot(x,hg, 'LineWidth', 2); hold on
 plot(x,hg_b, 'LineWidth', 2);
 xlabel('x [m]');
@@ -196,7 +204,7 @@ end
 
 Recov_fact_t=(1+(Pr_g^(1/3)).*((gamma-1)/2).*M.^2)./(1+((gamma-1)/2).*M.^2);
 T_aw_t=Recov_fact_t.*Tc; 
-figure;
+fig2 = figure('Color','white');
 plot(x,T_aw_t, 'LineWidth', 2);
 xlabel('x [m]');
 ylabel('T_aw [K]');
@@ -608,7 +616,7 @@ fprintf('m_dot_b = %.4f kg/s\n', m_dot_b);
 %  SECTION 12 - PLOTS
 % ============================================================
 
-figure;
+fig3 = figure('Color','white');
 plot(t_tbc, T_wh_TBC_CuCrZr, 'LineWidth', 2); hold on
 plot(t_tbc, T_wh_TBC_CuCrZr_b, 'LineWidth', 2); hold on
 plot(t_tbc, T_wh_TBC_CuCrZr_cyl, 'LineWidth', 2); 
@@ -620,7 +628,7 @@ title('Hot Wall temperatures vs TBC thickness');
 grid on
 
 %Temperature tbc/gas cyl/plane/bartz
-figure;
+fig4 = figure('Color','white');
 plot(x, T_tbc_gas, 'LineWidth', 2); hold on
 plot(x, T_tbc_gas_b, 'LineWidth', 2); hold on
 plot(x, T_tbc_gas_cyl, 'LineWidth', 2); 
@@ -632,7 +640,7 @@ title('tbc Wall temperatures over the domain');
 grid on
 
 %Profil 
-figure;
+fig5 = figure('Color','white');
 plot(x, r, 'LineWidth',2);
 xlabel('x [m]');
 ylabel('r [m]');
@@ -640,7 +648,7 @@ title('Profil between A/A* = 2 boundaries');
 grid on
 
 %Temperature wall_hot profil no TBC
-figure;
+fig6 = figure('Color','white');
 plot(x, T_wh_noTBC_CuCrZr, 'LineWidth',2); hold on
 plot(x, T_wh_noTBC_CuCrZr_b, 'LineWidth',2); hold on
 plot(x, T_wh_noTBC_CuCrZr_cyl, 'LineWidth',2);
@@ -652,7 +660,7 @@ title('Temperature wall hot no TBC profil between A/A* = 2 boundaries');
 grid on
 
 %Temperature wall_hot profil TBC plane/cylindrical/bartz
-figure;
+fig7 = figure('Color','white');
 plot(x, T_wh_tbc, 'LineWidth',2); hold on
 plot(x, T_wh_tbc_b, 'LineWidth',2); hold on
 plot(x, T_wh_tbc_cyl, 'LineWidth',2);
@@ -662,7 +670,7 @@ ylabel('T [k]');
 grid on
 
 %Mach number
-figure;
+fig8 = figure('Color','white');
 plot(x, M, 'LineWidth',2);
 xlabel('x [m]');
 ylabel('Mach number');
@@ -670,7 +678,7 @@ title('Mach distribution between A/A* = 2 boundaries');
 grid on
 
 %Heat flux with TBC CuCrZr wall plane/cyl model/bartz
-figure;
+fig9 = figure('Color','white');
 %plot(x, q_noTBC./10^6, 'LineWidth',2); hold on
 %plot(x, q_noTBC_b./10^6, 'LineWidth',2); hold on
 %plot(x, q_noTBC_cyl./10^6, 'LineWidth',2); hold on
@@ -683,7 +691,7 @@ ylabel('Convective Heat flux [MW/m^2]');
 grid on
 
 %Convergence of required coolant velocity v_req as a function of TBC thickness
-figure;
+fig10 = figure('Color','white');
 plot(t_hist, v_hist, 'LineWidth', 2); hold on
 plot(t_hist_b, v_hist_b, 'LineWidth', 2); hold on
 plot(t_hist_cyl, v_hist_cyl, 'LineWidth', 2); hold on
@@ -696,7 +704,7 @@ legend({'$v_{req, plane}$','$v_{req, Bartz}$', '$v_{req, cyl}$','$v_{lim}=15$'},
 grid on
 
 %Convergence of v_real toward v_{req} with tube count
-figure;
+fig11 = figure('Color','white');
 plot(N_hist, v_real_hist, 'LineWidth', 2) ;hold on
 yline(v_final_req_cyl, '--r')
 xlabel('Number of tubes $N$', 'Interpreter','latex')
@@ -706,3 +714,20 @@ title('Convergence of $v_{real}$ toward $v_{req}$ with tube count', ...
 legend({'$v_{real, plane}$',}, ...
        'Interpreter','latex', 'Location','best')
 grid on
+
+%% Save figures
+results_dir = fullfile(fileparts(mfilename('fullpath')), 'results');
+if ~exist(results_dir, 'dir')
+    mkdir(results_dir);
+end
+figs = [fig1, fig2, fig3, fig4, fig5, fig6, fig7, fig8, fig9, fig10, fig11];
+names = {'hg_profile', 'adiabatic_wall_temperature', 'hot_wall_vs_tbc_thickness', ...
+         'tbc_wall_temperature_domain', 'nozzle_profile', 'wall_hot_no_tbc', ...
+         'wall_hot_tbc', 'mach_distribution', 'convective_heat_flux', ...
+         'vreq_convergence_tbc', 'vreal_convergence_tubes'};
+for k = 1:numel(figs)
+    set(figs(k), 'Color', 'w');
+    exportgraphics(figs(k), fullfile(results_dir, [names{k} '.png']), ...
+        'Resolution', 200, 'BackgroundColor', 'white');
+end
+fprintf('Figures saved to: %s\n', results_dir);

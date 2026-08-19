@@ -65,7 +65,7 @@ It prints the gas properties, geometry, adiabatic wall temperature, coolant
 properties, the three-model TBC and velocity results, and produces eleven
 figures (h_g and T_aw profiles, wall temperatures vs TBC thickness, nozzle
 profile, Mach distribution, heat flux, convergence of v_req vs thickness and
-of v_real vs tube count).
+of v_real vs tube count), exported to `results/`.
 
 ## Notes
 
@@ -79,5 +79,6 @@ of v_real vs tube count).
 
 ```
 cooling-jacket-tank/
-└── throat_cooling_jacket.m   # throat jacket thermal/hydraulic design + figures
+├── throat_cooling_jacket.m   # throat jacket thermal/hydraulic design + figures
+└── results/                  # generated figures
 ```

@@ -94,9 +94,19 @@ for k_idx = 1:length(k_wall_CC_vec)
 end
 
 %% PLOT
-figure('Color', 'w');
+fig1 = figure('Color', 'w');
 plot(results(:,1), results(:,4), '-sr', 'LineWidth', 2, 'MarkerFaceColor', 'r');
 grid on;
 xlabel('Thermal conductivity C/C [W/mK]');
 ylabel('Optimized thickness TBC (RSZ+YSZ) [mm]');
 title('Stationary optimization (Resistance model)');
+
+%% Save figure
+results_dir = fullfile(fileparts(mfilename('fullpath')), 'results');
+if ~exist(results_dir, 'dir')
+    mkdir(results_dir);
+end
+set(fig1, 'Color', 'w');
+exportgraphics(fig1, fullfile(results_dir, 'bilayer_cc_thickness_vs_conductivity.png'), ...
+    'Resolution', 200, 'BackgroundColor', 'white');
+fprintf('Figure saved to: %s\n', results_dir);

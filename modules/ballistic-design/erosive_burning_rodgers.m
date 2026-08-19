@@ -26,6 +26,15 @@ fprintf('============================================================\n');
 fprintf('   EROSIVE BURNING ANALYSIS - AP/HTPB BATES MOTOR\n');
 fprintf('============================================================\n\n');
 
+% --- Figure styling: light background, dark text (matching design.m) ---
+set(0, 'DefaultFigureColor',    [0.97 0.97 0.97], ...  % figure background: near-white
+       'DefaultAxesColor',      [1.00 1.00 1.00], ...  % axes background: white
+       'DefaultAxesXColor',     [0.15 0.15 0.15], ...  % X tick/label: dark grey
+       'DefaultAxesYColor',     [0.15 0.15 0.15], ...  % Y tick/label: dark grey
+       'DefaultAxesZColor',     [0.15 0.15 0.15], ...  % Z tick/label
+       'DefaultAxesGridColor',  [0.15 0.15 0.15], ...  % grid lines
+       'DefaultTextColor',      [0.15 0.15 0.15]);     % all text objects
+
 %% =========================================================================
 % SECTION 0 - INPUT DATA
 %
@@ -286,5 +295,6 @@ if ~exist(results_dir, 'dir')
     mkdir(results_dir);
 end
 fig_path = fullfile(results_dir, 'erosive_burning_parametric.png');
-exportgraphics(fig, fig_path, 'Resolution', 200);
+set(fig, 'Color', 'w');
+exportgraphics(fig, fig_path, 'Resolution', 200, 'BackgroundColor', 'white');
 fprintf('Figure saved: %s\n', fig_path);
