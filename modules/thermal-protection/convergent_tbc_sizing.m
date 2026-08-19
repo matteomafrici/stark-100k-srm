@@ -2,6 +2,15 @@
 
 clc; clear all;
 
+% --- Figure styling: light background, dark text (matching design.m) ---
+set(0, 'DefaultFigureColor',    [0.97 0.97 0.97], ...  % figure background: near-white
+       'DefaultAxesColor',      [1.00 1.00 1.00], ...  % axes background: white
+       'DefaultAxesXColor',     [0.15 0.15 0.15], ...  % X tick/label: dark grey
+       'DefaultAxesYColor',     [0.15 0.15 0.15], ...  % Y tick/label: dark grey
+       'DefaultAxesZColor',     [0.15 0.15 0.15], ...  % Z tick/label
+       'DefaultAxesGridColor',  [0.15 0.15 0.15], ...  % grid lines
+       'DefaultTextColor',      [0.15 0.15 0.15]);     % all text objects
+
 %% 1. PHYSICAL DATA
 T_c = 2836.99;                      
 T_target_interfaccia = 1300; % RSZ/alloy interface thermal limit
